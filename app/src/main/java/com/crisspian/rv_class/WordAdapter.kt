@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.word_item_list.view.*
 
-class WordAdapter(private val listadoPalabras:MutableList<String>) :
+class WordAdapter() :
     RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
+    lateinit var listadoPalabras:MutableList<String>
 
     class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // Este es un camino
@@ -26,6 +27,11 @@ class WordAdapter(private val listadoPalabras:MutableList<String>) :
 
     override fun getItemCount(): Int {
         return listadoPalabras.size
+    }
+
+    fun updateList(list: MutableList<String>) {
+        listadoPalabras = list
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
